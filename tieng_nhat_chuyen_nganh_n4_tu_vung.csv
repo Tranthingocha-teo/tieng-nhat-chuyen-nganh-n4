@@ -1,0 +1,191 @@
+﻿Bài học,Số thứ tự,Từ vựng (言葉),Cách đọc (読み方),Hán Việt,Ý nghĩa tiếng Việt
+SE 13,1,始業時間,しぎょうじかん,Thủy Nghiệp Thời Gian,Giờ bắt đầu làm việc
+SE 13,2,朝礼,ちょうれい,Triều Lễ,Buổi họp giao ban ngắn đầu giờ sáng
+SE 13,3,当番制,とうばんせい,Đương Phiên Chế,Chế độ luân phiên trực nhật
+SE 13,4,訓練,くんれん,Huấn Luyện,"Huấn luyện, đào tạo, rèn luyện"
+SE 13,5,単位,たんい,Đơn Vị,Đơn vị (ví dụ: đơn vị nhóm dự án)
+SE 13,6,カンバン,かんばん,－,Phương pháp quản lý Kanban (bảng tiến độ trực quan)
+SE 13,7,ホワイトボード,ほわいとぼーど,－,Bảng trắng
+SE 13,8,作業状況,さぎょうじょうきょう,Tác Nghiệp Trạng Huống,"Tình hình công việc, trạng thái tác nghiệp"
+SE 13,9,短時間,たんじかん,Đoản Thời Gian,Thời gian ngắn
+SE 13,10,終わらせる,おわらせる,Chung,"Hoàn thành, kết thúc (thể sai khiến của 終わる)"
+SE 13,11,課題,かだい,Khóa Đề,"Vấn đề, thách thức cần giải quyết"
+SE 13,12,対策,たいさく,Đối Sách,"Biện pháp giải quyết, đối sách"
+SE 13,13,開発担当,かいはつたんとう,Khai Phát Đảm Đương,Người phụ trách phát triển
+SE 13,14,部長,ぶちょう,Bộ Trưởng,Trưởng phòng
+SE 13,15,出来上がる,できあがる,Xuất Lai Thượng,"Hoàn thành, được làm xong"
+SE 13,16,製品,せいひん,Chế Phẩm,Sản phẩm
+SE 13,17,休憩,きゅうけい,Hưu Khế,Nghỉ giải lao
+SE 14,1,きっかけ,－,－,"Cơ hội, khởi đầu, động cơ, lý do bắt đầu"
+SE 14,2,情報処理工学,じょうほうしょりこうがく,Tình Báo Xử Lý Công Học,Kỹ thuật xử lý thông tin (ngành học)
+SE 14,3,入社する,にゅうしゃする,Nhập Xã,"Vào công ty, gia nhập công ty"
+SE 14,4,データベース,－,－,Cơ sở dữ liệu
+SE 14,5,ネットワーク,－,－,Mạng máy tính
+SE 14,6,身につける,みにつける,Thân,"Tiếp thu, học hỏi, tích lũy (kiến thức, kỹ năng)"
+SE 14,7,気がつく,きがつく,Khí,"Nhận ra, nhận thấy"
+SE 14,8,IT技術,ITぎじゅつ,IT Kỹ Thuật,"Công nghệ IT, kỹ thuật công nghệ thông tin"
+SE 14,9,解決する,かいけつする,Giải Quyết,Giải quyết
+SE 14,10,印象に残る,いんしょうにのこる,Ấn Tượng Tàn,Để lại ấn tượng
+SE 14,11,介護,かいご,Giới Hộ,"Chăm sóc người bệnh, điều dưỡng"
+SE 14,12,医療,いりょう,Y Liệu,"Y tế, điều trị y tế"
+SE 14,13,人手不足,ひとでぶそく,Nhân Thủ Bất Túc,"Thiếu nhân lực, thiếu người làm"
+SE 14,14,ITの力,ITのちから,IT Lực,Sức mạnh của công nghệ thông tin
+SE 14,15,製品,せいひん,Chế Phẩm,Sản phẩm
+SE 15,1,進路,しんろ,Tiến Lộ,"Định hướng tương lai, con đường tiến thân, định hướng sự nghiệp"
+SE 15,2,〜について,－,－,"Mẫu câu / Ngữ pháp: Về, liên quan đến ~"
+SE 15,3,相談する,そうだんする,Tương Đàm,"Thảo luận, trao đổi, tư vấn"
+SE 15,4,まだ〜ていません,－,－,Mẫu câu / Ngữ pháp: Vẫn chưa... (biểu thị trạng thái chưa hoàn thành)
+SE 15,5,決める,きめる,Quyết,Quyết định
+SE 15,6,WEB系の開発エンジニア,WEBけいのかいはつエンジニア,Hệ Khai Phát,Kỹ sư phát triển hệ thống Web
+SE 15,7,興味がある,きょうみがある,Hưng Vị,"Có hứng thú, có quan tâm"
+SE 15,8,ビッグデータ,－,－,Dữ liệu lớn (Big Data)
+SE 15,9,分析する,ぶんせきする,Phân Tích,Phân tích
+SE 15,10,心配,しんぱい,Tâm Phối,"Lo lắng, lo ngại"
+SE 15,11,一生懸命,いっしょうけんめい,Nhất Sinh Huyền Mệnh,"Hết sức mình, chăm chỉ, cần mẫn"
+SE 15,12,〜上手になる,〜じょうずになる,Thượng Thủ,"Mẫu câu / Ngữ pháp: Trở nên giỏi, thành thạo (việc gì đó)"
+SE 15,13,〜に関わる,〜にかかわる,Quan,"Liên quan, tham gia vào"
+SE 15,14,ITの知識,ITのちしき,Tri Thức,Kiến thức về công nghệ thông tin (IT)
+SE 15,15,担当する,たんとうする,Đảm Đương,"Đảm nhiệm, phụ trách"
+SE 15,16,目標,もくひょう,Mục Tiêu,Mục tiêu
+SE 15,17,インターンシップ,－,－,Thực tập (Internship)
+SE 15,18,自分に合う,じぶんにあう,Tự Phân Hợp,Phù hợp với bản thân
+SE 15,19,見つける,みつける,Kiến,"Tìm thấy, tìm ra"
+SE 15,20,しっかりする,－,－,"Làm kỹ càng, nghiêm túc, chắc chắn"
+SE 15,21,頑張る,がんばる,Ngoan Trương,"Cố gắng, nỗ lực"
+SE 16,1,ニュースレター,－,－,Bản tin nội bộ
+SE 16,2,リモートワーク,－,－,Làm việc từ xa (Remote work)
+SE 16,3,〜ようになる,－,－,"Mẫu câu / Ngữ pháp: Biểu thị sự thay đổi trạng thái, thói quen hoặc khả năng (Trở nên..., bắt đầu có thể...)"
+SE 16,4,画面,がめん,Họa Diện,Màn hình
+SE 16,5,共有する,きょうゆうする,Cộng Hữu,Chia sẻ
+SE 16,6,説明,せつめい,Thuyết Minh,"Giải thích, thuyết minh"
+SE 16,7,チャット,－,－,"Chat, trò chuyện trực tuyến"
+SE 16,8,連絡,れんらく,Liên Lạc,"Liên lạc, thông báo"
+SE 16,9,〜こともある,－,－,"Mẫu câu / Ngữ pháp: Cũng có lúc, cũng có trường hợp xảy ra như vậy"
+SE 16,10,意外,いがい,Ý Ngoại,"Ngoài dự tính, ngạc nhiên, không ngờ đến"
+SE 16,11,少なくなる,すくなくなる,Thiểu,"Trở nên ít đi, giảm đi"
+SE 16,12,休憩時間,きゅうけいじかん,Hưu Khế Thời Gian,Thời gian nghỉ giải lao
+SE 16,13,同僚,どうりょう,Đồng Liêu,Đồng nghiệp
+SE 16,14,話せる,はなせる,Thoại,Có thể nói chuyện (Thể khả năng của động từ 話す)
+SE 16,15,〜Vると、〜,－,－,Mẫu câu / Ngữ pháp: Hễ/Sau khi thực hiện hành động V thì một hành động/kết quả khác lập tức xảy ra ngay sau đó
+SE 16,16,戻る,もどる,Lệ,"Quay lại, trở lại"
+SE 16,17,最近,さいきん,Tối Cận,Gần đây
+SE 16,18,複雑,ふくざつ,Phức Tạp,Phức tạp
+SE 16,19,予定,よてい,Dự Định,"Dự định, kế hoạch"
+SE 16,20,雰囲気,ふんいき,Phân Vi Khí,Bầu không khí
+SE 16,21,よくなる,－,－,Trở nên tốt hơn (Tính từ 良い biến đổi trạng thái sang dạng phó từ kết hợp với なる)
+SE 16,22,便利,べんり,Tiện Lợi,"Tiện lợi, thuận tiện"
+SE 16,23,方法,ほうほう,Phương Pháp,"Phương pháp, cách thức"
+SE 18,1,振り返り会・議事メモ,ふりかえりかい・ぎじメモ,Chấn Phản Hội・Nghị Sự,"Biên bản ghi chú buổi họp nhìn lại, đánh giá (retrospective)"
+SE 18,2,日時,にちじ,Nhật Thời,Ngày giờ
+SE 18,3,目的,もくてき,Mục Đích,Mục đích
+SE 18,4,〜をよくする,－,－,Làm cho ~ tốt hơn
+SE 18,5,助け合う,たすけあう,Trợ Hợp,Giúp đỡ lẫn nhau
+SE 18,6,〜を大切にする,〜をたいせつにする,Đại Thiết,"Trân trọng ~, coi trọng ~"
+SE 18,7,実際,じっさい,Thực Tế,Thực tế
+SE 18,8,やり方,やりかた,Phương,"Cách làm, cách thực hiện"
+SE 18,9,成果,せいか,Thành Quả,"Thành quả (Keep: điều làm tốt, cần duy trì)"
+SE 18,10,問題,もんだい,Vấn Đề,Vấn đề (Problem: điều chưa tốt)
+SE 18,11,改善策,かいぜんさく,Cải Thiện Sách,Biện pháp cải thiện (Try: điều sẽ thử làm)
+SE 18,12,内容,ないよう,Nội Dung,Nội dung
+SE 18,13,生産性,せいさんせい,Sinh Sản Tính,Năng suất
+SE 18,14,困る,こまる,Khốn,"Gặp khó khăn, bối rối"
+SE 18,15,見つかる,みつかる,Kiến,"Được tìm thấy, được phát hiện"
+SE 17,1,インターン生,インターンせい,Sinh,Thực tập sinh
+SE 17,2,同僚,どうりょう,Đồng Liêu,Đồng nghiệp
+SE 17,3,用意する,よういする,Dụng Ý,"Chuẩn bị, sửa soạn"
+SE 17,4,あげる,－,－,"Tặng, cho"
+SE 17,5,開ける,あける,Khai,"Mở (quà, hộp, phong bì...)"
+SE 17,6,カップ,－,－,"Cái tách, cái ly, cốc"
+SE 17,7,部長,ぶちょう,Bộ Trưởng,"Trưởng phòng, sếp"
+SE 17,8,くれる,－,－,"Mẫu câu / Ngữ pháp: cho tôi, tặng tôi"
+SE 17,9,もらう,－,－,Mẫu câu / Ngữ pháp: Nhận (từ ai đó)
+SE 17,10,大切にする,たいせつにする,Đại Thiết,"Trân trọng, giữ gìn, bảo vệ cẩn thận"
+SE 19,1,高知県,こうちけん,Cao Tri Huyện,Tỉnh Kochi
+SE 19,2,画面,がめん,Họa Diện,Màn hình
+SE 19,3,連絡する,れんらくする,Liên Lạc,Liên lạc
+SE 19,4,四万十川,しまんとがわ,Tứ Vạn Thập Xuyên,Sông Shimanto
+SE 19,5,カツオ,－,－,Cá ngừ vằn
+SE 19,6,藁,わら,Cảo,"Rơm, rạ"
+SE 19,7,打ち合わせ,うちあわせ,Đả Hợp,"Cuộc họp bàn bạc, trao đổi công việc"
+SE 20,1,新人研修,しんじんけんしゅう,Tân Nhân Nghiên Tu,Đào tạo nhân viên mới
+SE 20,2,失敗する,しっぱいする,Thất Bại,"Thất bại, làm hỏng việc"
+SE 20,3,頼む,たのむ,Lại,"Nhờ, nhờ vả"
+SE 20,4,締め切り,しめきり,Đế Thiết,Hạn chót (deadline)
+SE 20,5,理由,りゆう,Lý Do,Lý do
+SE 20,6,報告する,ほうこくする,Báo Cáo,Báo cáo
+SE 20,7,対策,たいさく,Đối Sách,"Đối sách, biện pháp đối phó"
+SE 20,8,約束を破る,やくそくをやぶる,Ước Thúc Phá,"Thất hứa, phá vỡ lời hứa"
+SE 20,9,〜てばかりいる,－,－,"Mẫu câu / Ngữ pháp: Toàn làm ~, cứ làm ~ suốt"
+SE 20,10,信用する,しんようする,Tín Dụng,"Tin tưởng, tín nhiệm"
+SE 20,11,大事,だいじ,Đại Sự,Quan trọng
+SE 20,12,感謝する,かんしゃする,Cảm Tạ,"Cảm ơn, biết ơn"
+SE 20,13,遅れそうなとき,おくれそうなとき,Trì,"Khi có vẻ sắp muộn, khi có nguy cơ trễ"
+SE 21,1,担当する,たんとうする,Đảm Đương,"Đảm nhận, phụ trách"
+SE 21,2,ある日,あるひ,Nhật,Một ngày nọ
+SE 21,3,対応する,たいおうする,Đối Ứng,"Xử lý, tiếp nhận hỗ trợ (khách hàng)"
+SE 21,4,〜てほしい,－,－,Mẫu câu / Ngữ pháp: Muốn (ai đó) làm gì
+SE 21,5,訪問する,ほうもんする,Phỏng Vấn,"Ghé thăm, đến thăm (khách hàng)"
+SE 21,6,緊張する,きんちょうする,Khẩn Trương,"Căng thẳng, hồi hộp"
+SE 21,7,丁寧に説明する,ていねいにせつめいする,Đinh Ninh Thuyết Minh,"Giải thích cẩn thận, chi tiết"
+SE 21,8,そのまま,－,－,"Để nguyên như vậy, bỏ mặc (そのままにしない: không để mặc đó)"
+SE 21,9,大事,だいじ,Đại Sự,Quan trọng
+SE 21,10,業界,ぎょうかい,Nghiệp Giới,"Ngành nghề, giới (kinh doanh)"
+SE 21,11,育てる,そだてる,Dục,"Nuôi dưỡng, đào tạo, bồi dưỡng"
+SE 21,12,こうやって,－,－,"Làm thế này, theo cách này"
+SE 22,1,日報,にっぽう,Nhật Báo,Báo cáo hằng ngày
+SE 22,2,ネットワーク,－,－,Mạng (network)
+SE 22,3,壊れる,こわれる,Hoại,"Bị hỏng, bị hư (máy móc, mạng)"
+SE 22,4,出張中,しゅっちょうちゅう,Xuất Trương Trung,Đang đi công tác
+SE 22,5,指示,しじ,Chỉ Thị,"Chỉ thị, hướng dẫn"
+SE 22,6,作業する,さぎょうする,Tác Nghiệp,"Làm việc, thực hiện thao tác"
+SE 22,7,機械,きかい,Cơ Giới,"Máy móc, thiết bị"
+SE 22,8,調べる,しらべる,Điều,"Kiểm tra, tìm hiểu"
+SE 22,9,交換する,こうかんする,Giao Hoán,"Thay thế, trao đổi"
+SE 22,10,確認する,かくにんする,Xác Nhận,"Xác nhận, kiểm tra"
+SE 22,11,つなぐ,－,－,"Nối, kết nối"
+SE 22,12,コマンド,－,－,Lệnh (command)
+SE 22,13,入力する,にゅうりょくする,Nhập Lực,"Nhập (dữ liệu, lệnh)"
+SE 22,14,ケーブル,－,－,"Cáp, dây cáp"
+SE 22,15,間違える,まちがえる,Gian Vi,"Nhầm lẫn, làm sai"
+SE 22,16,感想,かんそう,Cảm Tưởng,Cảm tưởng
+SE 22,17,知識,ちしき,Tri Thức,Kiến thức
+SE 22,18,〜ようになる,－,－,"Mẫu câu / Ngữ pháp: Trở nên (có thể làm gì), bắt đầu (làm gì)"
+SE 22,19,面白そう,おもしろそう,Diện Bạch,Trông có vẻ thú vị
+SE 23,1,お正月,おしょうがつ,Chính Nguyệt,"Tết, dịp đầu năm mới"
+SE 23,2,夕方,ゆうがた,Tịch Phương,Chiều tối
+SE 23,3,ハッキングされる,－,－,"Bị hack, bị tấn công mạng"
+SE 23,4,〜ようだ,－,－,"Mẫu câu / Ngữ pháp: Dường như, có vẻ như"
+SE 23,5,観光業,かんこうぎょう,Quan Quang Nghiệp,Ngành du lịch
+SE 23,6,直る,なおる,Trực,"Được sửa xong, khôi phục lại"
+SE 23,7,損をする,そんをする,Tổn,"Bị lỗ, thiệt hại, thua thiệt"
+SE 23,8,運が悪い,うんがわるい,Vận Ác,"Vận xui, không may mắn"
+SE 23,9,神社,じんじゃ,Thần Xã,Đền thờ Thần đạo (Jinja)
+SE 23,10,初詣,はつもうで,Sơ Nghệ,"Đi lễ đền, chùa lần đầu trong năm mới"
+SE 23,11,厄払い,やくばらい,Ách Phất,"Lễ giải hạn, trừ xui"
+SE 23,12,お祈り,おいのり,Kỳ,"Sự cầu nguyện, lời cầu nguyện"
+SE 24,1,社内報,しゃないほう,Xã Nội Báo,Bản tin nội bộ công ty
+SE 24,2,コラム,－,－,"Chuyên mục, mục chuyên đề (column)"
+SE 24,3,思い出,おもいで,Tư Xuất,"Kỷ niệm, hồi ức"
+SE 24,4,ゲアン省,ゲアンしょう,Tỉnh,Tỉnh Nghệ An
+SE 24,5,医療,いりょう,Y Liệu,Y tế
+SE 24,6,導入する,どうにゅうする,Đạo Nhập,"Đưa vào sử dụng, triển khai (hệ thống)"
+SE 24,7,移動する,いどうする,Di Động,Di chuyển
+SE 24,8,危ない,あぶない,Nguy,Nguy hiểm
+SE 24,9,大都市,だいとし,Đại Đô Thị,Thành phố lớn
+SE 24,10,自然,しぜん,Tự Nhiên,Thiên nhiên
+SE 24,11,通訳さん,つうやくさん,Thông Dịch,Phiên dịch viên
+SE 24,12,ITにあまり詳しくない,ITにあまりくわしくない,Tường,Không rành lắm về IT
+SE 24,13,笑う,わらう,Tiếu,Cười
+SE U.Sup,1,ローテーション制度,ローテーションせいど,Chế Độ,Chế độ luân chuyển (rotation)
+SE U.Sup,2,20代,にじゅうだい,Đại,"Độ tuổi 20, những năm 20 tuổi"
+SE U.Sup,3,部署,ぶしょ,Bộ Thự,"Bộ phận, phòng ban"
+SE U.Sup,4,異動する,いどうする,Dị Động,"Chuyển bộ phận, điều chuyển công tác"
+SE U.Sup,5,正直に言うと,しょうじきにいうと,Chính Trực Ngôn,Thành thật mà nói
+SE U.Sup,6,仲良く,なかよく,Trọng Lương,"Hòa thuận, thân thiết"
+SE U.Sup,7,営業,えいぎょう,Doanh Nghiệp,"Kinh doanh, bộ phận kinh doanh"
+SE U.Sup,8,違う,ちがう,Vi,"Khác, khác biệt"
+SE U.Sup,9,知り合い,しりあい,Tri Hợp,Người quen (知り合いになる: làm quen)
+SE U.Sup,10,キャリア,－,－,Sự nghiệp (career)
+SE U.Sup,11,何をしておけばいいですか,なにをしておけばいいですか,Hà,"Mẫu câu / Ngữ pháp: Nên làm sẵn những gì thì tốt? (〜ておく: làm sẵn, chuẩn bị trước)"
+SE U.Sup,12,嫌,いや,Hiềm,"Không thích, ngại, khó chịu"
+SE U.Sup,13,別れる,わかれる,Biệt,"Chia tay, chia xa"

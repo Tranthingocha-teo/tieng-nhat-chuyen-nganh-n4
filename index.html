@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Tiếng Nhật Chuyên Ngành N4 - Software Engineering (SE 13-24)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .jp-font {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .card-flip {
+      perspective: 1000px;
+    }
+    .card-inner {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+    .card-inner.flipped {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-24">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <div class="max-w-4xl mx-auto px-4 py-2.5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-600 flex items-center justify-center text-white shadow-sm shadow-emerald-200">
+            <i class="fa-solid fa-code text-sm"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <h1 class="text-base font-bold text-slate-900 leading-tight">Tiếng Nhật Chuyên Ngành N4</h1>
+              <span class="bg-emerald-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full shadow-2xs">SE 13-24</span>
+            </div>
+            <p class="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
+              <span>N4 Standard</span> &bull; 
+              <span>190 Từ Vựng IT</span> &bull; 
+              <span>13 Bài Đọc SE</span> &bull; 
+              <span>94 Ngữ Pháp</span>
+            </p>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-1.5">
+          <a href="https://tranthingocha-teo.github.io/tieng-nhat-chuyen-nganh-4/" class="px-2 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center gap-1 transition">
+            <i class="fa-solid fa-arrow-right-arrow-left text-[10px]"></i>
+            <span>Sang N3</span>
+          </a>
+          <a href="tieng_nhat_chuyen_nganh_n4_tu_vung.md" download class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center gap-1 transition">
+            <i class="fa-solid fa-download text-emerald-600"></i>
+            <span>.MD</span>
+          </a>
+          <a href="tieng_nhat_chuyen_nganh_n4_tu_vung.csv" download class="px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold flex items-center gap-1 transition">
+            <i class="fa-solid fa-file-csv"></i>
+            <span>Anki</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- SEARCH BOX -->
+      <div class="mt-2 relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+        <input 
+          id="searchInput" 
+          type="text" 
+          placeholder="Tìm từ vựng IT, Hán Việt, bài đọc, ngữ pháp N4..." 
+          class="w-full bg-slate-100 focus:bg-white pl-9 pr-8 py-2 rounded-xl text-xs sm:text-sm font-medium border border-transparent focus:border-emerald-500 focus:outline-none transition shadow-2xs"
+        />
+        <button id="clearSearch" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- AUDIO TIP BANNER -->
+    <div class="bg-amber-50 border-y border-amber-200/80 px-4 py-2 text-[11px] text-amber-900">
+      <div class="max-w-4xl mx-auto flex items-center justify-between gap-2">
+        <span class="flex items-center gap-1.5 font-medium leading-tight">
+          <i class="fa-solid fa-volume-high text-amber-600 shrink-0"></i>
+          <span>Nếu không nghe tiếng: Hãy <strong>tăng âm lượng</strong> và <strong>gạt tắt chế độ Im lặng/Rung (trên iPhone)</strong> nhé!</span>
+        </span>
+        <button onclick="speakJapanese('こんにちは、ITの勉強を頑張りましょう')" class="px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-[10px] shrink-0 active:scale-95 transition shadow-xs flex items-center gap-1">
+          <i class="fa-solid fa-play text-[9px]"></i> Thử loa 🔊
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN VIEW MODE TABS -->
+    <div class="max-w-4xl mx-auto px-4 flex items-center justify-between text-xs font-semibold overflow-x-auto no-scrollbar">
+      <div class="flex space-x-3 sm:space-x-5 py-0.5 whitespace-nowrap">
+        <button onclick="switchTab('vocab')" id="tabBtnVocab" class="py-2.5 border-b-2 border-emerald-600 text-emerald-600 flex items-center gap-1.5 transition font-bold">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Từ vựng IT (<span id="vocabCountBadge">190</span>)</span>
+        </button>
+        <button onclick="switchTab('reading')" id="tabBtnReading" class="py-2.5 border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-book-open text-blue-500"></i>
+          <span class="text-blue-700 font-bold">13 Bài Đọc SE</span>
+        </button>
+        <button onclick="switchTab('grammar')" id="tabBtnGrammar" class="py-2.5 border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-layer-group text-amber-500"></i>
+          <span>Ngữ pháp N4 (<span id="grammarCountBadge">94</span>)</span>
+        </button>
+        <button onclick="switchTab('flashcard')" id="tabBtnFlashcard" class="py-2.5 border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-id-card-clip text-purple-500"></i>
+          <span>Flashcard</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- HORIZONTAL SE LESSON CHIPS -->
+    <div class="bg-slate-50 border-t border-slate-200/60 py-2 px-4 overflow-x-auto no-scrollbar flex items-center space-x-1.5 max-w-4xl mx-auto" id="seChipsContainer">
+      <!-- Injected by JS -->
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-4xl mx-auto px-4 pt-3">
+
+    <!-- VIEW 1: VOCABULARY LIST -->
+    <section id="vocabView" class="space-y-2">
+      <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl px-3 py-2 text-xs text-emerald-900 flex items-center justify-between">
+        <span class="flex items-center gap-1.5 font-medium">
+          <i class="fa-solid fa-circle-info text-emerald-600"></i>
+          <span>Chạm vào <strong>bất kỳ từ vựng nào</strong> để nghe phát âm tiếng Nhật chuẩn Google TTS!</span>
+        </span>
+        <span class="text-[10px] bg-white px-2 py-0.5 rounded-full font-bold text-emerald-700 shadow-2xs">ja-JP</span>
+      </div>
+      <div id="vocabListContainer" class="space-y-2"></div>
+      <div id="vocabEmpty" class="hidden text-center py-16">
+        <p class="text-sm font-semibold text-slate-600">Không tìm thấy từ vựng phù hợp</p>
+      </div>
+    </section>
+
+    <!-- VIEW 2: 13 BÀI ĐỌC SE CHUYÊN NGÀNH CNTT -->
+    <section id="readingView" class="hidden space-y-3">
+      <div id="readingContainer" class="space-y-3"></div>
+    </section>
+
+    <!-- VIEW 3: NGỮ PHÁP N4 -->
+    <section id="grammarView" class="hidden space-y-2">
+      <div id="grammarContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+    </section>
+
+    <!-- VIEW 4: FLASHCARD MODE -->
+    <section id="flashcardView" class="hidden">
+      <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm max-w-md mx-auto">
+        <div class="flex items-center justify-between text-xs font-semibold text-slate-400 mb-3">
+          <span id="fcProgress">Thẻ 1 / 190</span>
+          <span id="fcLessonTag" class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold">SE 13</span>
+        </div>
+
+        <div class="card-flip w-full h-64 cursor-pointer" onclick="flipCard()">
+          <div id="fcInner" class="card-inner relative w-full h-full rounded-2xl shadow-sm border border-slate-200/80 bg-gradient-to-br from-emerald-50/50 to-white">
+            <div class="card-front absolute inset-0 p-6 flex flex-col items-center justify-center text-center">
+              <span class="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-2">Chạm để lật &bull; Bấm để nghe</span>
+              <h2 id="fcFrontVocab" class="text-3xl font-bold text-slate-900 jp-font tracking-tight mb-2">始業時間</h2>
+              <p id="fcFrontYomi" class="text-sm text-slate-400 jp-font">しぎょうじかん</p>
+              <button onclick="event.stopPropagation(); speakJapanese(document.getElementById('fcFrontVocab').innerText)" class="mt-4 w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:scale-105 active:scale-95 transition shadow-sm shadow-emerald-300">
+                <i class="fa-solid fa-volume-high text-xs"></i>
+              </button>
+            </div>
+            <div class="card-back absolute inset-0 p-6 flex flex-col items-center justify-center text-center bg-white rounded-2xl">
+              <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-2">Ý nghĩa & Hán Việt</span>
+              <p id="fcBackVie" class="text-xl font-bold text-slate-900 mb-2">Giờ bắt đầu làm việc</p>
+              <p id="fcBackHanViet" class="text-xs text-slate-500 font-bold mb-3 uppercase">Thủy Nghiệp Thời Gian</p>
+              <div class="px-3 py-1 bg-slate-100 rounded-lg text-xs font-semibold text-slate-600 jp-font" id="fcBackReading">
+                しぎょうじかん
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between mt-5">
+          <button onclick="prevCard()" class="w-12 h-12 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-sm font-bold transition active:scale-95">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button onclick="shuffleCards()" class="px-4 py-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold flex items-center gap-1.5 transition active:scale-95">
+            <i class="fa-solid fa-shuffle"></i>
+            <span>Xáo trộn</span>
+          </button>
+          <button onclick="nextCard()" class="w-12 h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center text-sm font-bold transition shadow-sm shadow-emerald-300 active:scale-95">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const VOCAB_DATA = [{"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "1", "vocab": "始業時間", "yomi": "しぎょうじかん", "hanviet": "Thủy Nghiệp Thời Gian", "meaning": "Giờ bắt đầu làm việc"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "2", "vocab": "朝礼", "yomi": "ちょうれい", "hanviet": "Triều Lễ", "meaning": "Buổi họp giao ban ngắn đầu giờ sáng"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "3", "vocab": "当番制", "yomi": "とうばんせい", "hanviet": "Đương Phiên Chế", "meaning": "Chế độ luân phiên trực nhật"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "4", "vocab": "訓練", "yomi": "くんれん", "hanviet": "Huấn Luyện", "meaning": "Huấn luyện, đào tạo, rèn luyện"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "5", "vocab": "単位", "yomi": "たんい", "hanviet": "Đơn Vị", "meaning": "Đơn vị (ví dụ: đơn vị nhóm dự án)"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "6", "vocab": "カンバン", "yomi": "かんばん", "hanviet": "－", "meaning": "Phương pháp quản lý Kanban (bảng tiến độ trực quan)"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "7", "vocab": "ホワイトボード", "yomi": "ほわいとぼーど", "hanviet": "－", "meaning": "Bảng trắng"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "8", "vocab": "作業状況", "yomi": "さぎょうじょうきょう", "hanviet": "Tác Nghiệp Trạng Huống", "meaning": "Tình hình công việc, trạng thái tác nghiệp"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "9", "vocab": "短時間", "yomi": "たんじかん", "hanviet": "Đoản Thời Gian", "meaning": "Thời gian ngắn"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "10", "vocab": "終わらせる", "yomi": "おわらせる", "hanviet": "Chung", "meaning": "Hoàn thành, kết thúc (thể sai khiến của 終わる)"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "11", "vocab": "課題", "yomi": "かだい", "hanviet": "Khóa Đề", "meaning": "Vấn đề, thách thức cần giải quyết"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "12", "vocab": "対策", "yomi": "たいさく", "hanviet": "Đối Sách", "meaning": "Biện pháp giải quyết, đối sách"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "13", "vocab": "開発担当", "yomi": "かいはつたんとう", "hanviet": "Khai Phát Đảm Đương", "meaning": "Người phụ trách phát triển"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "14", "vocab": "部長", "yomi": "ぶちょう", "hanviet": "Bộ Trưởng", "meaning": "Trưởng phòng"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "15", "vocab": "出来上がる", "yomi": "できあがる", "hanviet": "Xuất Lai Thượng", "meaning": "Hoàn thành, được làm xong"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "16", "vocab": "製品", "yomi": "せいひん", "hanviet": "Chế Phẩm", "meaning": "Sản phẩm"}, {"se_id": "SE 13", "se_name": "SE 13: Buổi sáng tại công ty IT (私の会社の朝)", "no": "17", "vocab": "休憩", "yomi": "きゅうけい", "hanviet": "Hưu Khế", "meaning": "Nghỉ giải lao"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "1", "vocab": "きっかけ", "yomi": "－", "hanviet": "－", "meaning": "Cơ hội, khởi đầu, động cơ, lý do bắt đầu"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "2", "vocab": "情報処理工学", "yomi": "じょうほうしょりこうがく", "hanviet": "Tình Báo Xử Lý Công Học", "meaning": "Kỹ thuật xử lý thông tin (ngành học)"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "3", "vocab": "入社する", "yomi": "にゅうしゃする", "hanviet": "Nhập Xã", "meaning": "Vào công ty, gia nhập công ty"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "4", "vocab": "データベース", "yomi": "－", "hanviet": "－", "meaning": "Cơ sở dữ liệu"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "5", "vocab": "ネットワーク", "yomi": "－", "hanviet": "－", "meaning": "Mạng máy tính"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "6", "vocab": "身につける", "yomi": "みにつける", "hanviet": "Thân", "meaning": "Tiếp thu, học hỏi, tích lũy (kiến thức, kỹ năng)"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "7", "vocab": "気がつく", "yomi": "きがつく", "hanviet": "Khí", "meaning": "Nhận ra, nhận thấy"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "8", "vocab": "IT技術", "yomi": "ITぎじゅつ", "hanviet": "IT Kỹ Thuật", "meaning": "Công nghệ IT, kỹ thuật công nghệ thông tin"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "9", "vocab": "解決する", "yomi": "かいけつする", "hanviet": "Giải Quyết", "meaning": "Giải quyết"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "10", "vocab": "印象に残る", "yomi": "いんしょうにのこる", "hanviet": "Ấn Tượng Tàn", "meaning": "Để lại ấn tượng"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "11", "vocab": "介護", "yomi": "かいご", "hanviet": "Giới Hộ", "meaning": "Chăm sóc người bệnh, điều dưỡng"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "12", "vocab": "医療", "yomi": "いりょう", "hanviet": "Y Liệu", "meaning": "Y tế, điều trị y tế"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "13", "vocab": "人手不足", "yomi": "ひとでぶそく", "hanviet": "Nhân Thủ Bất Túc", "meaning": "Thiếu nhân lực, thiếu người làm"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "14", "vocab": "ITの力", "yomi": "ITのちから", "hanviet": "IT Lực", "meaning": "Sức mạnh của công nghệ thông tin"}, {"se_id": "SE 14", "se_name": "SE 14: Phỏng vấn nghề Kỹ sư phần mềm (エンジニアの仕事)", "no": "15", "vocab": "製品", "yomi": "せいひん", "hanviet": "Chế Phẩm", "meaning": "Sản phẩm"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "1", "vocab": "進路", "yomi": "しんろ", "hanviet": "Tiến Lộ", "meaning": "Định hướng tương lai, con đường tiến thân, định hướng sự nghiệp"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "2", "vocab": "〜について", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: Về, liên quan đến ~"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "3", "vocab": "相談する", "yomi": "そうだんする", "hanviet": "Tương Đàm", "meaning": "Thảo luận, trao đổi, tư vấn"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "4", "vocab": "まだ〜ていません", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: Vẫn chưa... (biểu thị trạng thái chưa hoàn thành)"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "5", "vocab": "決める", "yomi": "きめる", "hanviet": "Quyết", "meaning": "Quyết định"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "6", "vocab": "WEB系の開発エンジニア", "yomi": "WEBけいのかいはつエンジニア", "hanviet": "Hệ Khai Phát", "meaning": "Kỹ sư phát triển hệ thống Web"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "7", "vocab": "興味がある", "yomi": "きょうみがある", "hanviet": "Hưng Vị", "meaning": "Có hứng thú, có quan tâm"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "8", "vocab": "ビッグデータ", "yomi": "－", "hanviet": "－", "meaning": "Dữ liệu lớn (Big Data)"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "9", "vocab": "分析する", "yomi": "ぶんせきする", "hanviet": "Phân Tích", "meaning": "Phân tích"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "10", "vocab": "心配", "yomi": "しんぱい", "hanviet": "Tâm Phối", "meaning": "Lo lắng, lo ngại"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "11", "vocab": "一生懸命", "yomi": "いっしょうけんめい", "hanviet": "Nhất Sinh Huyền Mệnh", "meaning": "Hết sức mình, chăm chỉ, cần mẫn"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "12", "vocab": "〜上手になる", "yomi": "〜じょうずになる", "hanviet": "Thượng Thủ", "meaning": "Mẫu câu / Ngữ pháp: Trở nên giỏi, thành thạo (việc gì đó)"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "13", "vocab": "〜に関わる", "yomi": "〜にかかわる", "hanviet": "Quan", "meaning": "Liên quan, tham gia vào"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "14", "vocab": "ITの知識", "yomi": "ITのちしき", "hanviet": "Tri Thức", "meaning": "Kiến thức về công nghệ thông tin (IT)"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "15", "vocab": "担当する", "yomi": "たんとうする", "hanviet": "Đảm Đương", "meaning": "Đảm nhiệm, phụ trách"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "16", "vocab": "目標", "yomi": "もくひょう", "hanviet": "Mục Tiêu", "meaning": "Mục tiêu"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "17", "vocab": "インターンシップ", "yomi": "－", "hanviet": "－", "meaning": "Thực tập (Internship)"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "18", "vocab": "自分に合う", "yomi": "じぶんにあう", "hanviet": "Tự Phân Hợp", "meaning": "Phù hợp với bản thân"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "19", "vocab": "見つける", "yomi": "みつける", "hanviet": "Kiến", "meaning": "Tìm thấy, tìm ra"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "20", "vocab": "しっかりする", "yomi": "－", "hanviet": "－", "meaning": "Làm kỹ càng, nghiêm túc, chắc chắn"}, {"se_id": "SE 15", "se_name": "SE 15: Tư vấn định hướng nghề nghiệp (将来の仕事の相談)", "no": "21", "vocab": "頑張る", "yomi": "がんばる", "hanviet": "Ngoan Trương", "meaning": "Cố gắng, nỗ lực"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "1", "vocab": "ニュースレター", "yomi": "－", "hanviet": "－", "meaning": "Bản tin nội bộ"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "2", "vocab": "リモートワーク", "yomi": "－", "hanviet": "－", "meaning": "Làm việc từ xa (Remote work)"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "3", "vocab": "〜ようになる", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: Biểu thị sự thay đổi trạng thái, thói quen hoặc khả năng (Trở nên..., bắt đầu có thể...)"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "4", "vocab": "画面", "yomi": "がめん", "hanviet": "Họa Diện", "meaning": "Màn hình"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "5", "vocab": "共有する", "yomi": "きょうゆうする", "hanviet": "Cộng Hữu", "meaning": "Chia sẻ"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "6", "vocab": "説明", "yomi": "せつめい", "hanviet": "Thuyết Minh", "meaning": "Giải thích, thuyết minh"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "7", "vocab": "チャット", "yomi": "－", "hanviet": "－", "meaning": "Chat, trò chuyện trực tuyến"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "8", "vocab": "連絡", "yomi": "れんらく", "hanviet": "Liên Lạc", "meaning": "Liên lạc, thông báo"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "9", "vocab": "〜こともある", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: Cũng có lúc, cũng có trường hợp xảy ra như vậy"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "10", "vocab": "意外", "yomi": "いがい", "hanviet": "Ý Ngoại", "meaning": "Ngoài dự tính, ngạc nhiên, không ngờ đến"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "11", "vocab": "少なくなる", "yomi": "すくなくなる", "hanviet": "Thiểu", "meaning": "Trở nên ít đi, giảm đi"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "12", "vocab": "休憩時間", "yomi": "きゅうけいじかん", "hanviet": "Hưu Khế Thời Gian", "meaning": "Thời gian nghỉ giải lao"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "13", "vocab": "同僚", "yomi": "どうりょう", "hanviet": "Đồng Liêu", "meaning": "Đồng nghiệp"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "14", "vocab": "話せる", "yomi": "はなせる", "hanviet": "Thoại", "meaning": "Có thể nói chuyện (Thể khả năng của động từ 話す)"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "15", "vocab": "〜Vると、〜", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: Hễ/Sau khi thực hiện hành động V thì một hành động/kết quả khác lập tức xảy ra ngay sau đó"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "16", "vocab": "戻る", "yomi": "もどる", "hanviet": "Lệ", "meaning": "Quay lại, trở lại"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "17", "vocab": "最近", "yomi": "さいきん", "hanviet": "Tối Cận", "meaning": "Gần đây"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "18", "vocab": "複雑", "yomi": "ふくざつ", "hanviet": "Phức Tạp", "meaning": "Phức tạp"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "19", "vocab": "予定", "yomi": "よてい", "hanviet": "Dự Định", "meaning": "Dự định, kế hoạch"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "20", "vocab": "雰囲気", "yomi": "ふんいき", "hanviet": "Phân Vi Khí", "meaning": "Bầu không khí"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "21", "vocab": "よくなる", "yomi": "－", "hanviet": "－", "meaning": "Trở nên tốt hơn (Tính từ 良い biến đổi trạng thái sang dạng phó từ kết hợp với なる)"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "22", "vocab": "便利", "yomi": "べんり", "hanviet": "Tiện Lợi", "meaning": "Tiện lợi, thuận tiện"}, {"se_id": "SE 16", "se_name": "SE 16: Làm việc từ xa (リモートワークについて)", "no": "23", "vocab": "方法", "yomi": "ほうほう", "hanviet": "Phương Pháp", "meaning": "Phương pháp, cách thức"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "1", "vocab": "振り返り会・議事メモ", "yomi": "ふりかえりかい・ぎじメモ", "hanviet": "Chấn Phản Hội・Nghị Sự", "meaning": "Biên bản ghi chú buổi họp nhìn lại, đánh giá (retrospective)"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "2", "vocab": "日時", "yomi": "にちじ", "hanviet": "Nhật Thời", "meaning": "Ngày giờ"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "3", "vocab": "目的", "yomi": "もくてき", "hanviet": "Mục Đích", "meaning": "Mục đích"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "4", "vocab": "〜をよくする", "yomi": "－", "hanviet": "－", "meaning": "Làm cho ~ tốt hơn"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "5", "vocab": "助け合う", "yomi": "たすけあう", "hanviet": "Trợ Hợp", "meaning": "Giúp đỡ lẫn nhau"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "6", "vocab": "〜を大切にする", "yomi": "〜をたいせつにする", "hanviet": "Đại Thiết", "meaning": "Trân trọng ~, coi trọng ~"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "7", "vocab": "実際", "yomi": "じっさい", "hanviet": "Thực Tế", "meaning": "Thực tế"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "8", "vocab": "やり方", "yomi": "やりかた", "hanviet": "Phương", "meaning": "Cách làm, cách thực hiện"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "9", "vocab": "成果", "yomi": "せいか", "hanviet": "Thành Quả", "meaning": "Thành quả (Keep: điều làm tốt, cần duy trì)"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "10", "vocab": "問題", "yomi": "もんだい", "hanviet": "Vấn Đề", "meaning": "Vấn đề (Problem: điều chưa tốt)"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "11", "vocab": "改善策", "yomi": "かいぜんさく", "hanviet": "Cải Thiện Sách", "meaning": "Biện pháp cải thiện (Try: điều sẽ thử làm)"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "12", "vocab": "内容", "yomi": "ないよう", "hanviet": "Nội Dung", "meaning": "Nội dung"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "13", "vocab": "生産性", "yomi": "せいさんせい", "hanviet": "Sinh Sản Tính", "meaning": "Năng suất"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "14", "vocab": "困る", "yomi": "こまる", "hanviet": "Khốn", "meaning": "Gặp khó khăn, bối rối"}, {"se_id": "SE 18", "se_name": "SE 18: Cuộc họp Retrospective / Cải tiến (振り返り会のメモ)", "no": "15", "vocab": "見つかる", "yomi": "みつかる", "hanviet": "Kiến", "meaning": "Được tìm thấy, được phát hiện"}, {"se_id": "SE 17", "se_name": "SE 17: Văn hóa tặng quà sinh nhật đồng nghiệp (田中さんの誕生日)", "no": "1", "vocab": "インターン生", "yomi": "インターンせい", "hanviet": "Sinh", "meaning": "Thực tập sinh"}, {"se_id": "SE 17", "se_name": "SE 17: Văn hóa tặng quà sinh nhật đồng nghiệp (田中さんの誕生日)", "no": "2", "vocab": "同僚", "yomi": "どうりょう", "hanviet": "Đồng Liêu", "meaning": "Đồng nghiệp"}, {"se_id": "SE 17", "se_name": "SE 17: Văn hóa tặng quà sinh nhật đồng nghiệp (田中さんの誕生日)", "no": "3", "vocab": "用意する", "yomi": "よういする", "hanviet": "Dụng Ý", "meaning": "Chuẩn bị, sửa soạn"}, {"se_id": "SE 17", "se_name": "SE 17: Văn hóa tặng quà sinh nhật đồng nghiệp (田中さんの誕生日)", "no": "4", "vocab": "あげる", "yomi": "－", "hanviet": "－", "meaning": "Tặng, cho"}, {"se_id": "SE 17", "se_name": "SE 17: Văn hóa tặng quà sinh nhật đồng nghiệp (田中さんの誕生日)", "no": "5", "vocab": "開ける", "yomi": "あける", "hanviet": "Khai", "meaning": "Mở (quà, hộp, phong bì...)"}, {"se_id": "SE 17", "se_name": "SE 17: Văn hóa tặng quà sinh nhật đồng nghiệp (田中さんの誕生日)", "no": "6", "vocab": "カップ", "yomi": "－", "hanviet": "－", "meaning": "Cái tách, cái ly, cốc"}, {"se_id": "SE 17", "se_name": "SE 17: Văn hóa tặng quà sinh nhật đồng nghiệp (田中さんの誕生日)", "no": "7", "vocab": "部長", "yomi": "ぶちょう", "hanviet": "Bộ Trưởng", "meaning": "Trưởng phòng, sếp"}, {"se_id": "SE 17", "se_name": "SE 17: Văn hóa tặng quà sinh nhật đồng nghiệp (田中さんの誕生日)", "no": "8", "vocab": "くれる", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: cho tôi, tặng tôi"}, {"se_id": "SE 17", "se_name": "SE 17: Văn hóa tặng quà sinh nhật đồng nghiệp (田中さんの誕生日)", "no": "9", "vocab": "もらう", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: Nhận (từ ai đó)"}, {"se_id": "SE 17", "se_name": "SE 17: Văn hóa tặng quà sinh nhật đồng nghiệp (田中さんの誕生日)", "no": "10", "vocab": "大切にする", "yomi": "たいせつにする", "hanviet": "Đại Thiết", "meaning": "Trân trọng, giữ gìn, bảo vệ cẩn thận"}, {"se_id": "SE 19", "se_name": "SE 19: Xử lý phản hồi khách hàng qua Slack (高知県のお客さん)", "no": "1", "vocab": "高知県", "yomi": "こうちけん", "hanviet": "Cao Tri Huyện", "meaning": "Tỉnh Kochi"}, {"se_id": "SE 19", "se_name": "SE 19: Xử lý phản hồi khách hàng qua Slack (高知県のお客さん)", "no": "2", "vocab": "画面", "yomi": "がめん", "hanviet": "Họa Diện", "meaning": "Màn hình"}, {"se_id": "SE 19", "se_name": "SE 19: Xử lý phản hồi khách hàng qua Slack (高知県のお客さん)", "no": "3", "vocab": "連絡する", "yomi": "れんらくする", "hanviet": "Liên Lạc", "meaning": "Liên lạc"}, {"se_id": "SE 19", "se_name": "SE 19: Xử lý phản hồi khách hàng qua Slack (高知県のお客さん)", "no": "4", "vocab": "四万十川", "yomi": "しまんとがわ", "hanviet": "Tứ Vạn Thập Xuyên", "meaning": "Sông Shimanto"}, {"se_id": "SE 19", "se_name": "SE 19: Xử lý phản hồi khách hàng qua Slack (高知県のお客さん)", "no": "5", "vocab": "カツオ", "yomi": "－", "hanviet": "－", "meaning": "Cá ngừ vằn"}, {"se_id": "SE 19", "se_name": "SE 19: Xử lý phản hồi khách hàng qua Slack (高知県のお客さん)", "no": "6", "vocab": "藁", "yomi": "わら", "hanviet": "Cảo", "meaning": "Rơm, rạ"}, {"se_id": "SE 19", "se_name": "SE 19: Xử lý phản hồi khách hàng qua Slack (高知県のお客さん)", "no": "7", "vocab": "打ち合わせ", "yomi": "うちあわせ", "hanviet": "Đả Hợp", "meaning": "Cuộc họp bàn bạc, trao đổi công việc"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "1", "vocab": "新人研修", "yomi": "しんじんけんしゅう", "hanviet": "Tân Nhân Nghiên Tu", "meaning": "Đào tạo nhân viên mới"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "2", "vocab": "失敗する", "yomi": "しっぱいする", "hanviet": "Thất Bại", "meaning": "Thất bại, làm hỏng việc"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "3", "vocab": "頼む", "yomi": "たのむ", "hanviet": "Lại", "meaning": "Nhờ, nhờ vả"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "4", "vocab": "締め切り", "yomi": "しめきり", "hanviet": "Đế Thiết", "meaning": "Hạn chót (deadline)"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "5", "vocab": "理由", "yomi": "りゆう", "hanviet": "Lý Do", "meaning": "Lý do"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "6", "vocab": "報告する", "yomi": "ほうこくする", "hanviet": "Báo Cáo", "meaning": "Báo cáo"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "7", "vocab": "対策", "yomi": "たいさく", "hanviet": "Đối Sách", "meaning": "Đối sách, biện pháp đối phó"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "8", "vocab": "約束を破る", "yomi": "やくそくをやぶる", "hanviet": "Ước Thúc Phá", "meaning": "Thất hứa, phá vỡ lời hứa"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "9", "vocab": "〜てばかりいる", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: Toàn làm ~, cứ làm ~ suốt"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "10", "vocab": "信用する", "yomi": "しんようする", "hanviet": "Tín Dụng", "meaning": "Tin tưởng, tín nhiệm"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "11", "vocab": "大事", "yomi": "だいじ", "hanviet": "Đại Sự", "meaning": "Quan trọng"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "12", "vocab": "感謝する", "yomi": "かんしゃする", "hanviet": "Cảm Tạ", "meaning": "Cảm ơn, biết ơn"}, {"se_id": "SE 20", "se_name": "SE 20: Bài học từ sai lầm của kỹ sư mới (あの日の失敗から学んだこと)", "no": "13", "vocab": "遅れそうなとき", "yomi": "おくれそうなとき", "hanviet": "Trì", "meaning": "Khi có vẻ sắp muộn, khi có nguy cơ trễ"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "1", "vocab": "担当する", "yomi": "たんとうする", "hanviet": "Đảm Đương", "meaning": "Đảm nhận, phụ trách"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "2", "vocab": "ある日", "yomi": "あるひ", "hanviet": "Nhật", "meaning": "Một ngày nọ"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "3", "vocab": "対応する", "yomi": "たいおうする", "hanviet": "Đối Ứng", "meaning": "Xử lý, tiếp nhận hỗ trợ (khách hàng)"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "4", "vocab": "〜てほしい", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: Muốn (ai đó) làm gì"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "5", "vocab": "訪問する", "yomi": "ほうもんする", "hanviet": "Phỏng Vấn", "meaning": "Ghé thăm, đến thăm (khách hàng)"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "6", "vocab": "緊張する", "yomi": "きんちょうする", "hanviet": "Khẩn Trương", "meaning": "Căng thẳng, hồi hộp"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "7", "vocab": "丁寧に説明する", "yomi": "ていねいにせつめいする", "hanviet": "Đinh Ninh Thuyết Minh", "meaning": "Giải thích cẩn thận, chi tiết"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "8", "vocab": "そのまま", "yomi": "－", "hanviet": "－", "meaning": "Để nguyên như vậy, bỏ mặc (そのままにしない: không để mặc đó)"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "9", "vocab": "大事", "yomi": "だいじ", "hanviet": "Đại Sự", "meaning": "Quan trọng"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "10", "vocab": "業界", "yomi": "ぎょうかい", "hanviet": "Nghiệp Giới", "meaning": "Ngành nghề, giới (kinh doanh)"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "11", "vocab": "育てる", "yomi": "そだてる", "hanviet": "Dục", "meaning": "Nuôi dưỡng, đào tạo, bồi dưỡng"}, {"se_id": "SE 21", "se_name": "SE 21: Kinh nghiệm dành cho Dev mới (新人のみなさんへ)", "no": "12", "vocab": "こうやって", "yomi": "－", "hanviet": "－", "meaning": "Làm thế này, theo cách này"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "1", "vocab": "日報", "yomi": "にっぽう", "hanviet": "Nhật Báo", "meaning": "Báo cáo hằng ngày"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "2", "vocab": "ネットワーク", "yomi": "－", "hanviet": "－", "meaning": "Mạng (network)"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "3", "vocab": "壊れる", "yomi": "こわれる", "hanviet": "Hoại", "meaning": "Bị hỏng, bị hư (máy móc, mạng)"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "4", "vocab": "出張中", "yomi": "しゅっちょうちゅう", "hanviet": "Xuất Trương Trung", "meaning": "Đang đi công tác"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "5", "vocab": "指示", "yomi": "しじ", "hanviet": "Chỉ Thị", "meaning": "Chỉ thị, hướng dẫn"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "6", "vocab": "作業する", "yomi": "さぎょうする", "hanviet": "Tác Nghiệp", "meaning": "Làm việc, thực hiện thao tác"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "7", "vocab": "機械", "yomi": "きかい", "hanviet": "Cơ Giới", "meaning": "Máy móc, thiết bị"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "8", "vocab": "調べる", "yomi": "しらべる", "hanviet": "Điều", "meaning": "Kiểm tra, tìm hiểu"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "9", "vocab": "交換する", "yomi": "こうかんする", "hanviet": "Giao Hoán", "meaning": "Thay thế, trao đổi"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "10", "vocab": "確認する", "yomi": "かくにんする", "hanviet": "Xác Nhận", "meaning": "Xác nhận, kiểm tra"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "11", "vocab": "つなぐ", "yomi": "－", "hanviet": "－", "meaning": "Nối, kết nối"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "12", "vocab": "コマンド", "yomi": "－", "hanviet": "－", "meaning": "Lệnh (command)"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "13", "vocab": "入力する", "yomi": "にゅうりょくする", "hanviet": "Nhập Lực", "meaning": "Nhập (dữ liệu, lệnh)"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "14", "vocab": "ケーブル", "yomi": "－", "hanviet": "－", "meaning": "Cáp, dây cáp"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "15", "vocab": "間違える", "yomi": "まちがえる", "hanviet": "Gian Vi", "meaning": "Nhầm lẫn, làm sai"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "16", "vocab": "感想", "yomi": "かんそう", "hanviet": "Cảm Tưởng", "meaning": "Cảm tưởng"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "17", "vocab": "知識", "yomi": "ちしき", "hanviet": "Tri Thức", "meaning": "Kiến thức"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "18", "vocab": "〜ようになる", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: Trở nên (có thể làm gì), bắt đầu (làm gì)"}, {"se_id": "SE 22", "se_name": "SE 22: Báo cáo ngày xử lý sự cố mạng (日報：ネットワーク障害対応)", "no": "19", "vocab": "面白そう", "yomi": "おもしろそう", "hanviet": "Diện Bạch", "meaning": "Trông có vẻ thú vị"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "1", "vocab": "お正月", "yomi": "おしょうがつ", "hanviet": "Chính Nguyệt", "meaning": "Tết, dịp đầu năm mới"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "2", "vocab": "夕方", "yomi": "ゆうがた", "hanviet": "Tịch Phương", "meaning": "Chiều tối"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "3", "vocab": "ハッキングされる", "yomi": "－", "hanviet": "－", "meaning": "Bị hack, bị tấn công mạng"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "4", "vocab": "〜ようだ", "yomi": "－", "hanviet": "－", "meaning": "Mẫu câu / Ngữ pháp: Dường như, có vẻ như"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "5", "vocab": "観光業", "yomi": "かんこうぎょう", "hanviet": "Quan Quang Nghiệp", "meaning": "Ngành du lịch"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "6", "vocab": "直る", "yomi": "なおる", "hanviet": "Trực", "meaning": "Được sửa xong, khôi phục lại"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "7", "vocab": "損をする", "yomi": "そんをする", "hanviet": "Tổn", "meaning": "Bị lỗ, thiệt hại, thua thiệt"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "8", "vocab": "運が悪い", "yomi": "うんがわるい", "hanviet": "Vận Ác", "meaning": "Vận xui, không may mắn"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "9", "vocab": "神社", "yomi": "じんじゃ", "hanviet": "Thần Xã", "meaning": "Đền thờ Thần đạo (Jinja)"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "10", "vocab": "初詣", "yomi": "はつもうで", "hanviet": "Sơ Nghệ", "meaning": "Đi lễ đền, chùa lần đầu trong năm mới"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "11", "vocab": "厄払い", "yomi": "やくばらい", "hanviet": "Ách Phất", "meaning": "Lễ giải hạn, trừ xui"}, {"se_id": "SE 23", "se_name": "SE 23: Sự cố an ninh mạng ngày nghỉ Tết (ひどいお正月)", "no": "12", "vocab": "お祈り", "yomi": "おいのり", "hanviet": "Kỳ", "meaning": "Sự cầu nguyện, lời cầu nguyện"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "1", "vocab": "社内報", "yomi": "しゃないほう", "hanviet": "Xã Nội Báo", "meaning": "Bản tin nội bộ công ty"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "2", "vocab": "コラム", "yomi": "－", "hanviet": "－", "meaning": "Chuyên mục, mục chuyên đề (column)"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "3", "vocab": "思い出", "yomi": "おもいで", "hanviet": "Tư Xuất", "meaning": "Kỷ niệm, hồi ức"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "4", "vocab": "ゲアン省", "yomi": "ゲアンしょう", "hanviet": "Tỉnh", "meaning": "Tỉnh Nghệ An"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "5", "vocab": "医療", "yomi": "いりょう", "hanviet": "Y Liệu", "meaning": "Y tế"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "6", "vocab": "導入する", "yomi": "どうにゅうする", "hanviet": "Đạo Nhập", "meaning": "Đưa vào sử dụng, triển khai (hệ thống)"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "7", "vocab": "移動する", "yomi": "いどうする", "hanviet": "Di Động", "meaning": "Di chuyển"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "8", "vocab": "危ない", "yomi": "あぶない", "hanviet": "Nguy", "meaning": "Nguy hiểm"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "9", "vocab": "大都市", "yomi": "だいとし", "hanviet": "Đại Đô Thị", "meaning": "Thành phố lớn"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "10", "vocab": "自然", "yomi": "しぜん", "hanviet": "Tự Nhiên", "meaning": "Thiên nhiên"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "11", "vocab": "通訳さん", "yomi": "つうやくさん", "hanviet": "Thông Dịch", "meaning": "Phiên dịch viên"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "12", "vocab": "ITにあまり詳しくない", "yomi": "ITにあまりくわしくない", "hanviet": "Tường", "meaning": "Không rành lắm về IT"}, {"se_id": "SE 24", "se_name": "SE 24: Kỷ niệm công tác nước ngoài (海外出張の思い出)", "no": "13", "vocab": "笑う", "yomi": "わらう", "hanviet": "Tiếu", "meaning": "Cười"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "1", "vocab": "ローテーション制度", "yomi": "ローテーションせいど", "hanviet": "Chế Độ", "meaning": "Chế độ luân chuyển (rotation)"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "2", "vocab": "20代", "yomi": "にじゅうだい", "hanviet": "Đại", "meaning": "Độ tuổi 20, những năm 20 tuổi"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "3", "vocab": "部署", "yomi": "ぶしょ", "hanviet": "Bộ Thự", "meaning": "Bộ phận, phòng ban"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "4", "vocab": "異動する", "yomi": "いどうする", "hanviet": "Dị Động", "meaning": "Chuyển bộ phận, điều chuyển công tác"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "5", "vocab": "正直に言うと", "yomi": "しょうじきにいうと", "hanviet": "Chính Trực Ngôn", "meaning": "Thành thật mà nói"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "6", "vocab": "仲良く", "yomi": "なかよく", "hanviet": "Trọng Lương", "meaning": "Hòa thuận, thân thiết"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "7", "vocab": "営業", "yomi": "えいぎょう", "hanviet": "Doanh Nghiệp", "meaning": "Kinh doanh, bộ phận kinh doanh"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "8", "vocab": "違う", "yomi": "ちがう", "hanviet": "Vi", "meaning": "Khác, khác biệt"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "9", "vocab": "知り合い", "yomi": "しりあい", "hanviet": "Tri Hợp", "meaning": "Người quen (知り合いになる: làm quen)"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "10", "vocab": "キャリア", "yomi": "－", "hanviet": "－", "meaning": "Sự nghiệp (career)"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "11", "vocab": "何をしておけばいいですか", "yomi": "なにをしておけばいいですか", "hanviet": "Hà", "meaning": "Mẫu câu / Ngữ pháp: Nên làm sẵn những gì thì tốt? (〜ておく: làm sẵn, chuẩn bị trước)"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "12", "vocab": "嫌", "yomi": "いや", "hanviet": "Hiềm", "meaning": "Không thích, ngại, khó chịu"}, {"se_id": "SE U.Sup", "se_name": "SE Sup: Chuyển đổi bộ phận / Luân chuyển việc (新しい部署へ)", "no": "13", "vocab": "別れる", "yomi": "わかれる", "hanviet": "Biệt", "meaning": "Chia tay, chia xa"}];
+    const READINGS_DATA = [{"id": "SE 13", "title": "SE 13 - 読み物", "text": "武田さんが、ブログで自分の会社の朝について紹介します。 【私の会社の朝】 私の会社は8時40分が始業時間です。8時40分になったら、30人の部員が朝礼をします。 朝礼では、毎日一人が3分くらい話します。その人はその日のテーマを決めます。例えば、「最近楽しかったこと」や、「おいしいレストラン」について話します。これは、みんなの前で話す訓練です。 朝礼のあと、プロジェクトチーム単位で「カンバン」ミーティングをします。カンバンを見ながら、仕事のタスクを確認します。そして、前の日の作業状況と今日の作業を報告します。10分くらいで終わりますから、みんな立って話します。課題があったら、カンバンのあとで、そのメンバーと一緒に対策を考えます。 カンバンが終わると、みんな自分の仕事を始めます。開発担当の人は、プログラムを作ります。私はプロジェクトリーダーですから、お客さんや部長と話したり、プロジェクトの仕事をチェックしたりします。 私の会社では、休憩時間は自由です。コーヒーを飲んだり、お菓子を食べたりして、少し休みます。みんなリラックスして仕事をしています。 ユニット13・語彙・表現リスト"}, {"id": "SE 14", "title": "SE 14 - 読み物", "text": "インターン生が、武田さんに仕事についてインタビューします。 【インタビュー：エンジニアの仕事】 Q：エンジニアになったきっかけは何ですか。 A：私は中学生のころからコンピューターが好きでした。それで、大学で情報処理工学を勉強しました。大学を卒業して、ソフトウェアエンジニアになりました。入社して、最初の5年間はプログラマーをしていました。プログラム開発が好きだったので、仕事が楽しかったです。 Q：仕事のどんなところが楽しかったですか。 A：プログラマーには、プログラム言語の知識が必要です。それから、データベースやネットワークの知識も必要です。仕事をしながら、いろいろなことを勉強することができて、とても楽しかったです。 また、お客さんと話すと、いろいろな悩みがあることに気がつきました。IT技術を使うと、お客さんの悩みを解決することができます。そして、会社のソフトウェアで、お客さんの仕事が楽になると、とてもうれしいです。 Q：印象に残っている先輩はいますか。 A：私の部署の部長です。今、日本では介護や医療の人手不足が大きな問題になっています。部長は、いつも「ITの力でこの問題を解決したい」と言っています。それはとても難しい仕事です。でも、部長は楽しく仕事をしています。私も部長のように、みんなが喜ぶ製品を作りたいです。 ユニット14・語彙・表現リスト"}, {"id": "SE 15", "title": "SE 15 - 読み物", "text": "インターン生が、将来の進路について武田さんに相談します。 【将来の仕事の相談】 インターン生： 武田さん、少しお話ししてもいいですか。 武田： はい、いいですよ。どうしましたか。 インターン生： 私は来年卒業します。でも、卒業したあと、どこで働くか、まだ決めていません。 武田： そうですか。今はどんな仕事をしたいと思っていますか。 インターン生： WEB系の開発エンジニアに興味があります。それから、AIやビッグデータを分析するエンジニアにも興味があります。 武田： いいですね。日本で働きたいと思っていますか。 インターン生： はい、思っています。でも、日本語が少し心配です。 武田： 大丈夫ですよ。今も一生懸命勉強していますから、もっと上手になると思います インターン生： ありがとうございます。私は、将来、日本とベトナムのITプロジェクトに関わるエンジニアになりたいと思っています。そして、日本の会社で仕事をしながら、ITの知識と日本語をもっと勉強するつもりです。将来は、大きなITプロジェクトを担当したいです。 武田： いい目標ですね。今のインターンシップで、いろいろな仕事を経験して、自分に合う仕事を見つけることが大切ですよ。また、まずは卒業まで、ITの勉強と日本語の勉強をしっかりしてください。 インターン生： はい、頑張ります。ありがとうございました。 ユニット15・語彙・表現リスト"}, {"id": "SE 16", "title": "SE 16 - 読み物", "text": "会社の社員が、社内ニュースレターにリモートワークについて書きました。 【リモートワークについて】 私の会社では、リモートワークができます。以前は会社で仕事をすることが多かったですが、今は家でも①仕事ができるようになりました。 リモートワークの日は、オンラインで会議をします。画面を共有できるので、仕事の説明もできます。また、チャットを使って、チームのメンバーにすぐ連絡できます。 でも、リモートワークでは、少し難しいこともあります。仕事の話はできますが、仕事以外の話をすることが少なくなりました。会社では、休憩時間に同僚と話せます。でも、オンライン会議が終わると、すぐに仕事に戻ります。 それで、最近はオンライン会議の前に、少し雑談をするようになりました。天気や週末の予定など、簡単な話をします。少し話してから仕事を始めると、チームの雰囲気がよくなると思います。 リモートワークは便利ですが、②コミュニケーションも大切だと思います。これからは、チームで楽しく仕事をする方法も考えたいです。 ユニット16・語彙・表現リスト"}, {"id": "SE 18", "title": "SE 18 - 読み物", "text": "プロジェクトチームの、振り返り会のメモです。 【振り返り会のメモ】 日時： 毎週１回 参加者： プロジェクトチーム全員 目的： 私のチームでは、チームワークをよくするために、メンバーが助け合うことを大切にしています。でも、実際はみんな忙しいですから、ほかのメンバーに手伝いをお願いするのが難しいときがあります。この問題を解決するために、週に１回、振り返り会をしています。 やり方： KPTを使って、その週の成果（Keep）、問題（Problem）、改善策（Try）をみんなで発表します。 今週の内容： ■Keep（成果） ・わからないことがあったとき、チームの中でわかる人が助けてくれました。 ・問題がはやく解決できたので、チームの生産性が高くなりました。 ・助けてもらった人も、次はほかのメンバーを助けたいと思っています。 ■Problem（問題） ・忙しくて、手伝いをお願いできなかったメンバーがいました。 ■Try（改善策） ・困ったときは、すぐにほかのメンバーに手伝ってもらいます。 ・見つかった問題は、みんなで話して、解決します。 ユニット18・語彙・表現リスト"}, {"id": "SE 17", "title": "SE 17 - 読み物", "text": "インターン生のリンさんと武田さんたちが、同僚の田中さんに誕生日プレゼントをあげます。 【田中さんの誕生日】 リン： 明日は田中さんの誕生日ですね。 武田： そうですね。みんなでプレゼントを用意しましょう。 リン： 田中さんはコーヒーが好きですから、ベトナムのコーヒーをあげたいと思います。 武田： いいですね。私はITの本をあげたいと思います。田中さんは最近、AIの勉強をしていますから。 （田中さんの誕生日） みんな： 田中さん、お誕生日おめでとうございます。 田中： ありがとうございます。 武田： これは、みんなからです。どうぞ。 田中： わあ、ありがとうございます。開けてもいいですか。 リン： はい、どうぞ。 田中： ベトナムのコーヒーとカップ、それからITの本ですね。あ、本がもう一冊ありますね。ありがとうございます。みなさんからすてきなプレゼントをもらいました。 リン： 田中さん、その本はAIの本ですか。 田中： はい、そうです。これは部長がくれました。AIとビッグデータの本です。 武田： いいプレゼントですね。 田中： はい。大切にします。 Unit 17・語彙リスト"}, {"id": "SE 19", "title": "SE 19 - 読み物", "text": "武田さんが、社内チャット（Slack）で同僚の田中さんと話しています。 【高知県のお客さん】 田中：武田さん、高知県のお客さんのシステムは、どうなりましたか。 武田：お客さんは、私たちが開発したシステムが使いにくいと言っています。昨日、リモート会議で聞いてみましたが、どこが使いにくいか、よくわかりませんでした。 田中：そうですか。どうしますか。 武田：明日、もう一度リモート会議をします。今度は、お客さんにシステムの画面を見せてもらうつもりです。まだわからなかったら、来月、お客さんの会社へ行って、実際に使っているところを見てみます。 田中：じゃ、仕事で高知県へ行くかもしれませんね。 武田：はい。決まったら、チームのみなさんにメールで連絡します。 田中：わかりました。高知県には、四万十川という川がありますね。とてもきれいだそうですよ。 武田：そうですか。カツオを藁で焼く料理も、おいしいそうですね。 田中：いいですね。お客さんと食事に行くかもしれませんね。 武田：はい。打ち合わせのあとで、一緒に行くと思います。とても楽しみです。 ユニット19・語彙・表現リスト"}, {"id": "SE 20", "title": "SE 20 - 読み物", "text": "新人研修で、武田さんが新入社員に、仕事の失敗について話します。 【あの日の失敗から学んだこと】 みなさん、こんにちは。今日は、私が新人のころの失敗について話します。 私は、会社に入って１年目のとき、頼まれた仕事が締め切りまでに終わりませんでした。それで、上司にすごくしかられました。 でも、上司がしかった理由は、仕事が遅れたことではありませんでした。本当の理由は、遅れることを早く報告しなかったことでした。 早く報告したら、上司はすぐに対策を考えることができます。例えば、ほかの人に手伝いを頼むことができます。 報告しないで遅れるのは、約束を破ることです。約束を破ってばかりいたら、だれにも信用されません。仕事で一番大事なのは信用だと言われました。そして、次からは早く報告するように言われました。 上司は、私のためにしかってくれました。私がみんなに信用される人になるためです。今は、とても感謝しています。 みなさんも、仕事が遅れそうなときは、早く上司に報告してください。 ユニット20・語彙・表現リスト"}, {"id": "SE 21", "title": "SE 21 - 読み物", "text": "武田さんが、会社のブログに新人のころの経験を書きました。 【新人のみなさんへ】 私は新人のころ、プログラム開発を担当していました。しかし、ある日、上司に「お客さんの対応もしてほしい」と言われました。 理由は二つありました。まず、チームのお客さんが多くなりました。それから、上司は、私にお客さんの対応を経験させたいと思っていました。 初めてお客さんの会社を訪問したとき、とても緊張しました。でも、上司は私に、お客さんの質問に答えさせてくれました。私はまだ新人だったので、すぐに答えられないことがたくさんありました。そのとき、お客さんはとても優しくて、システムについて丁寧に説明してくれました。とてもうれしかったです。 わからないことをそのままにしないで、「わからないので教えてください」と言うことが大事だと学びました。 また、どの業界にも新人がいます。先輩たちも、みんな昔は新人でした。先輩たちは、新人にいろいろな仕事をさせて、育てます。新人は、こうやって、会社やお客さん、みんなに育てられます。 私も将来、新人に優しくしてあげたいです。そして、新人にたくさんの経験をさせてあげたいと思います。 ユニット21・語彙・表現リスト"}, {"id": "SE 22", "title": "SE 22 - 読み物", "text": "武田さんが、今日の仕事について日報を書きました。 【日報】 ■今日の仕事： お客さんのネットワーク障害の対応 ■内容 今日、お客さんから電話がありました。「ネットワークが壊れました。仕事ができなくて、困っています。すぐに助けてください。」 でも、ネットワーク担当のSEは出張中でした。それで、私が一人でお客さんの会社へ行きました。 お客さんの会社では、ネットワークSEの指示を電話で聞きながら、作業しました。どの機械が壊れたか調べて、その機械を交換しました。 ネットワークSEには、いろいろなことをさせられました。例えば、機械のランプの色を確認させられたり、機械にPCをつないで、コマンドを入力させられたりしました。「ケーブルをつなぐところを間違えないでください」とも言われました。 お客さんはとても困っていました。でも、問題を解決することができました。お客さんにとても感謝されました。 ■感想 私にはネットワークの知識がありませんでした。でも、今日の経験で、ネットワークのことが少しわかるようになりました。 今までネットワークが苦手でしたが、今はあまり苦手ではなくなりました。ネットワークSEの仕事も面白そうだと思うようになりました。 お客さんに感謝されて、とてもうれしかったです。 ユニット22・語彙・表現リスト"}, {"id": "SE 23", "title": "SE 23 - 読み物", "text": "武田さんが、SNSに今年のお正月のことを書きました。 【ひどいお正月】 12月31日の夕方、お客さんから「会社のホームページが壊れたようです」と連絡がありました。 調べてみると、ホームページのサーバーが中国からハッキングされたようでした。 お客さんは観光業の会社です。正月休みは１月４日に終わります。その日までに直らないと、お客さんの会社は大きな損をすることになります。 それで、私とチームのメンバーは、12月31日から１月３日まで、ほとんど寝ないで、ホームページを直す作業をしました。 一生懸命頑張りました。でも、時間がたくさんかかったので、お客さんにしかられてしまいました。 新しい年の最初から、運が悪いと思いました。それで、神社へ初詣に行って、厄払いをしてもらいました。厄払いは、悪いことがなくなるためのお祈りです。 #お正月 #初詣 #厄払い ユニット23・語彙・表現リスト"}, {"id": "SE 24", "title": "SE 24 - 読み物", "text": "武田さんが、社内報のコラムに海外出張の思い出を書きました。 【海外出張の思い出】 ２年前、ベトナムのゲアン省に医療ネットワークを導入する仕事がありました。それで、何回か海外出張をしました。日本からホーチミンへ行って、ホーチミンからゲアン省までは車で移動しました。 ベトナムはとても暑かったです。昼は、外を歩いている人が少ししかいませんでした。でも、夕方になると、外にたくさんの人がいました。日本では、夏の昼に遊びに行く人も多いです。でも、ベトナムでは、とても暑い日の昼に外に出ると、危ないです。ベトナムへ行って、それがわかりました。 ホーチミンは、車とバイクがとても多い大都市でした。ゲアン省は、自然がたくさんあるところでした。大きい店は少ししかありませんでした。会った人はみんな優しくて、私はベトナムがとても好きになりました。 でも、通訳さんには困りました。私は３分くらい説明しました。でも、通訳さんは30秒くらいしか話しませんでした。その通訳さんは、ITにあまり詳しくなかったようです。自分がわからなかったところは、通訳しなかったようでした。 そのときは大変でしたが、今は笑って話せる、いい思い出です。今度は、仕事ではなくて、遊びにベトナムへ行きたいと思っています。 ユニット24・語彙・表現リスト"}, {"id": "SE U.Sup", "title": "SE U.Sup - 読み物", "text": "武田さんが、部署の異動について上司と先輩に話を聞きます。 【新しい部署へ】 武田さんの会社には、ローテーション制度があります。社員は20代のときに、１回以上ほかの部署に異動します。武田さんは、来年ほかの部署に異動することが決まりました。 【場面１：上司との面談】 上司：武田さん、来年の異動の話を聞きましたか。 武田：はい。でも、正直に言うと、あまり行きたくないんです。今の部署の仕事が楽しいんです。お客さんともチームのメンバーとも、仲良く仕事ができていますから。 上司：そうですか。ローテーション制度の目的を知っていますか。 武田：いいえ、よく知りません。 上司：SEの会社でも、みんながプログラム開発をしているわけではありません。ネットワークを作る部署もありますし、コンサルタントや営業の部署もあります。部署が違うと、必要なスキルも違います。 上司：それから、お客さんの業界もいろいろです。例えば、病院や市役所、観光業の会社などです。仕事をするときは、その業界の知識も必要です。 上司：いくつかの部署を経験すれば、いろいろなスキルや業界の知識を身につけることができます。また、たくさんの人と知り合いになれますよ。 武田：そうなんですか。じゃ、自分のキャリアのために、異動しようと思います。異動の前に、何をしておけばいいですか。 上司：新しい部署の人に、どんな仕事をしているか聞いておいてください。 【場面２：新しい部署の先輩と】 武田：すみません。そちらの部署では、どんな仕事をしているんですか。 先輩：私たちの部署では、プログラム開発をベトナムのNAL社にお願いしています。ですから、時々ベトナム出張もありますよ。 武田：本当ですか。私は前にベトナムに出張したことがあります。ベトナムが大好きなんです。 【そのあと】 先輩の話を聞いて、異動があまり嫌ではなくなりました。今の部署のみんなと別れるのは、まだ少しさびしいです。でも、新しい部署の仕事を楽しみにしようと思います。来年までに、心の準備をしておこうと思います。 Supユニット・語彙・表現リスト"}];
+    const GRAMMAR_DATA = [{"unit": "U13", "title": "[U13-P3]ビデオ１：V１たら、V２～。", "pattern": "V１たら、V２～。"}, {"unit": "U13", "title": "[U13-P3]ビデオ２：～たら、～。", "pattern": "～たら、～。"}, {"unit": "U13", "title": "[U13-P3]ビデオ３：V１てV２。", "pattern": "V１てV２。"}, {"unit": "U13", "title": "[U13-P3]ビデオ４：V１てからV２。", "pattern": "V１てからV２。"}, {"unit": "U13", "title": "[U13-P3]ビデオ５：V１ながらV２。", "pattern": "V１ながらV２。"}, {"unit": "U13", "title": "[U13-P3]ビデオ６：Nだけ", "pattern": "Nだけ"}, {"unit": "U14", "title": "[U14-P3]ビデオ１：辞書形", "pattern": "辞書形"}, {"unit": "U14", "title": "[U14-P3]ビデオ２： 趣味はVることです ・VるのがADJ・ VるのはADJ。", "pattern": "趣味はVることです ・VるのがADJ・ VるのはADJ。"}, {"unit": "U14", "title": "[U14-P3]ビデオ３： Vることができます・Vることができません。", "pattern": "Vることができます・Vることができません。"}, {"unit": "U14", "title": "[U14-P3]ビデオ４：それで", "pattern": "それで"}, {"unit": "U15", "title": "[U15-P3]ビデオ１：Vる・Vないつもりです。", "pattern": "Vる・Vないつもりです。"}, {"unit": "U15", "title": "[U15-P3]ビデオ２：普通形", "pattern": "普通形"}, {"unit": "U15", "title": "[U15-P3]ビデオ３：普通形＋（と思います・だろうと思います/)だろうと思います。", "pattern": "普通形＋（と思います・だろうと思います/)だろうと思います。"}, {"unit": "U15", "title": "[U15-P3]ビデオ４：普通形＋かもしれません。", "pattern": "普通形＋かもしれません。"}, {"unit": "U15", "title": "[U15-P3]ビデオ５：普通形＋かどうか、～。", "pattern": "普通形＋かどうか、～。"}, {"unit": "U15", "title": "[U15-P3]ビデオ６：名詞修飾", "pattern": "名詞修飾"}, {"unit": "U15", "title": "[U15-P3]ビデオ７： V1ないでV2。", "pattern": "V1ないでV2。"}, {"unit": "U15", "title": "[U15-P3]ビデオ８：Vなくてもいいです。", "pattern": "Vなくてもいいです。"}, {"unit": "U15", "title": "[U15-P3]ビデオ９：Nでもいいです。", "pattern": "Nでもいいです。"}, {"unit": "U15", "title": "[U15-P3]ビデオ１０：Nの間・Vている間、～。", "pattern": "Nの間・Vている間、～。"}, {"unit": "U15", "title": "[U15-P3]ビデオ１１： V1か、V2か、まだ決めていません。", "pattern": "V1か、V2か、まだ決めていません。"}, {"unit": "U15", "title": "[U15-P3]ビデオ１２：Nになります。", "pattern": "Nになります。"}, {"unit": "U15", "title": "[U15-P3]ビデオ１３：Nによる", "pattern": "Nによる"}, {"unit": "U15", "title": "[U15-P3]ビデオ１４：Vるまでに、～。", "pattern": "Vるまでに、～。"}, {"unit": "U16", "title": "[U16-P3]ビデオ１：可能形", "pattern": "可能形"}, {"unit": "U16", "title": "[U16-P3]ビデオ２：Vるまえ、～。", "pattern": "Vるまえ、～。"}, {"unit": "U16", "title": "[U16-P3]ビデオ３：～ので、～。", "pattern": "～ので、～。"}, {"unit": "U16", "title": "[U16P3]ビデオ４：～ようになりました。", "pattern": "～ようになりました。"}, {"unit": "U16", "title": "[U16-P3]ビデオ５：だから・ですから", "pattern": "だから・ですから"}, {"unit": "U16", "title": "[U16-P3]ビデオ６：～方", "pattern": "～方"}, {"unit": "U16", "title": "[U16-P3]ビデオ７：なんでも", "pattern": "なんでも"}, {"unit": "U17", "title": "[U17-P3]ビデオ１：あげます・さしあげます。", "pattern": "あげます・さしあげます。"}, {"unit": "U17", "title": "[U17-P3]ビデオ２：もらいます・いただきます。", "pattern": "もらいます・いただきます。"}, {"unit": "U17", "title": "[U17-P3]ビデオ３：くれます・くださいます。", "pattern": "くれます・くださいます。"}, {"unit": "U17", "title": "[U17-P3]ビデオ４：どれも・みんな", "pattern": "どれも・みんな"}, {"unit": "U_Sup", "title": "U18-P3]ビデオ１：〜てもらう。", "pattern": "〜てもらう。"}, {"unit": "U18", "title": "[U18-P3]ビデオ２：〜てくれる", "pattern": "〜てくれる"}, {"unit": "U18", "title": "[U18-P3]ビデオ３：〜ために、～。", "pattern": "〜ために、～。"}, {"unit": "U18", "title": "[U18-P3]ビデオ４：～なります", "pattern": "～なります"}, {"unit": "U18", "title": "[U18-P3]ビデオ５：～であります", "pattern": "～であります"}, {"unit": "U19", "title": "[U19-P3]ビデオ１：Vてあげます。", "pattern": "Vてあげます。"}, {"unit": "U19", "title": "[U19-P3]ビデオ２：〜そうです。① （〜と言っていました）。", "pattern": "〜そうです。① （〜と言っていました）。"}, {"unit": "U19", "title": "[U19-P3]ビデオ３：〜そうです。②", "pattern": "〜そうです。②"}, {"unit": "U19", "title": "[U19-P3]ビデオ４：Nで〜。（理由）", "pattern": "Nで〜。（理由）"}, {"unit": "U19", "title": "[U19-P3]ビデオ５：〜と言います。/〜と言いました。", "pattern": "〜と言います。/〜と言いました。"}, {"unit": "U19", "title": "[U19-P3]ビデオ６：Vてみます。", "pattern": "Vてみます。"}, {"unit": "U19", "title": "[U19-P3]ビデオ７：〜のもいいです。", "pattern": "〜のもいいです。"}, {"unit": "U19", "title": "[U19-P3]ビデオ８：N1というN2", "pattern": "N1というN2"}, {"unit": "U20", "title": "[U20-P3]ビデオ１：受身動詞", "pattern": "受身動詞"}, {"unit": "U20", "title": "[U20-P3]ビデオ２：受身文", "pattern": "受身文"}, {"unit": "U20", "title": "[U20-P3]ビデオ３：～ように言われました。", "pattern": "～ように言われました。"}, {"unit": "U20", "title": "[U20-P3]ビデオ４：～ばかりしています。", "pattern": "～ばかりしています。"}, {"unit": "U20", "title": "[U20-P3]ビデオ５：～ほど～ない。", "pattern": "～ほど～ない。"}, {"unit": "U20", "title": "[U20-P3]ビデオ６：～代わりに", "pattern": "～代わりに"}, {"unit": "U21", "title": "[U21-P3]ビデオ１：使役動詞", "pattern": "使役動詞"}, {"unit": "U21", "title": "[U21-P3]ビデオ２：使役文", "pattern": "使役文"}, {"unit": "U21", "title": "[U21-P3]ビデオ３：〜させてくれました。", "pattern": "〜させてくれました。"}, {"unit": "U21", "title": "[U21-P3]ビデオ４：〜させようとしました。", "pattern": "〜させようとしました。"}, {"unit": "U21", "title": "[U21-P3]ビデオ５：〜てほしいです・〜てほしいと思っています。", "pattern": "〜てほしいです・〜てほしいと思っています。"}, {"unit": "U21", "title": "[U21-P3]ビデオ６：何でも、何も", "pattern": "何でも、何も"}, {"unit": "U22", "title": "[U22-P3]ビデオ１：使役受身", "pattern": "使役受身"}, {"unit": "U22", "title": "[U22-P3]ビデオ２：使役受身文", "pattern": "使役受身文"}, {"unit": "U22", "title": "[U22-P3]ビデオ３： Aく/になります。", "pattern": "Aく/になります。"}, {"unit": "U22", "title": "[U22-P3]ビデオ４：Vようになりました・Vなくなりました 。", "pattern": "Vようになりました・Vなくなりました 。"}, {"unit": "U22", "title": "[U22-P3]ビデオ５：Vするようになりました・Vなくなりました。", "pattern": "Vするようになりました・Vなくなりました。"}, {"unit": "U22", "title": "[U22-P3]ビデオ６： ～おかげで、～。", "pattern": "～おかげで、～。"}, {"unit": "U23", "title": "[U23-P3]ビデオ１：所有物の受身", "pattern": "所有物の受身"}, {"unit": "U23", "title": "[U23-P3]ビデオ２：～てしまう。", "pattern": "～てしまう。"}, {"unit": "U23", "title": "[U23-P3]ビデオ３：～ようなN", "pattern": "～ようなN"}, {"unit": "U23", "title": "[U23-P3]ビデオ３：～ようだ。", "pattern": "～ようだ。"}, {"unit": "U23", "title": "[U23-P3]ビデオ４：～ことになります。", "pattern": "～ことになります。"}, {"unit": "U23", "title": "[U23-P3]ビデオ５：～と・すると、～。", "pattern": "～と・すると、～。"}, {"unit": "U23", "title": "[U23-P3]ビデオ６：～がする。", "pattern": "～がする。"}, {"unit": "U23", "title": "[U23-P3]ビデオ７：途中で", "pattern": "途中で"}, {"unit": "U24", "title": "[U24-P3]ビデオ１：〜られています。", "pattern": "〜られています。"}, {"unit": "U24", "title": "[U24-P3]ビデオ２：〜と〜。", "pattern": "〜と〜。"}, {"unit": "U24", "title": "[U24-P3]ビデオ３：～で～が一番～。", "pattern": "～で～が一番～。"}, {"unit": "U24", "title": "[U24-P3]ビデオ４：～しか～ません。", "pattern": "～しか～ません。"}, {"unit": "U24", "title": "[U24-P3]ビデオ５：～でも～。", "pattern": "～でも～。"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ１：〜ば", "pattern": "〜ば"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ２：疑問詞＋助詞＋ばいいですか/たらいいですか。", "pattern": "疑問詞＋助詞＋ばいいですか/たらいいですか。"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ３：Vてあります。", "pattern": "Vてあります。"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ４：Vておきます。", "pattern": "Vておきます。"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ５：〜よ", "pattern": "〜よ"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ６：〜すぎる。", "pattern": "〜すぎる。"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ７：〜のです・～んです。", "pattern": "〜のです・～んです。"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ８：～なさい。", "pattern": "～なさい。"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ９：～ようとおもいます。", "pattern": "～ようとおもいます。"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ１０： ～ようとしても", "pattern": "～ようとしても"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ１１：～わけではありません。", "pattern": "～わけではありません。"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ１２：～はじめる・～つづける・～おわる", "pattern": "～はじめる・～つづける・～おわる"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ１３：何か・何も/誰か・誰も/誰かに・誰にも/どこかに・どこにも", "pattern": "何か・何も/誰か・誰も/誰かに・誰にも/どこかに・どこにも"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ１４：～ことにする。", "pattern": "～ことにする。"}, {"unit": "U_Sup", "title": "[U・SU-P3]ビデオ１５： Nにとって", "pattern": "Nにとって"}];
+
+    let activeTab = 'vocab';
+    let selectedSE = 'ALL';
+    let searchQuery = '';
+    let filteredVocab = [...VOCAB_DATA];
+    let filteredReadings = [...READINGS_DATA];
+    let filteredGrammar = [...GRAMMAR_DATA];
+    let fcIndex = 0;
+
+    const seChips = [
+      { id: 'ALL', name: 'Tất cả 13 bài SE' },
+      { id: 'SE 13', name: 'SE 13: Buổi sáng công ty IT' },
+      { id: 'SE 14', name: 'SE 14: Kỹ sư phần mềm' },
+      { id: 'SE 15', name: 'SE 15: Tư vấn nghề nghiệp' },
+      { id: 'SE 16', name: 'SE 16: Remote Work' },
+      { id: 'SE 17', name: 'SE 17: Sinh nhật đồng nghiệp' },
+      { id: 'SE 18', name: 'SE 18: Họp Retrospective' },
+      { id: 'SE 19', name: 'SE 19: Khách hàng & Slack' },
+      { id: 'SE 20', name: 'SE 20: Bài học sai lầm' },
+      { id: 'SE 21', name: 'SE 21: Lời khuyên người mới' },
+      { id: 'SE 22', name: 'SE 22: Báo cáo ngày (日報)' },
+      { id: 'SE 23', name: 'SE 23: Sự cố an ninh mạng' },
+      { id: 'SE 24', name: 'SE 24: Công tác Việt Nam' },
+      { id: 'SE U.Sup', name: 'SE Sup: Luân chuyển việc' },
+    ];
+
+    function init() {
+      renderSEChips();
+      renderVocab();
+      renderReadings();
+      renderGrammar();
+      setupSearch();
+      updateFlashcard();
+    }
+
+    function renderSEChips() {
+      const container = document.getElementById('seChipsContainer');
+      container.innerHTML = seChips.map(c => `
+        <button onclick="selectSE('${c.id}')" class="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition ${
+          selectedSE === c.id 
+            ? 'bg-emerald-600 text-white shadow-xs' 
+            : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
+        }">
+          ${c.name}
+        </button>
+      `).join('');
+    }
+
+    function selectSE(id) {
+      selectedSE = id;
+      renderSEChips();
+      applyFilters();
+    }
+
+    function switchTab(tab) {
+      activeTab = tab;
+      const views = {
+        vocab: document.getElementById('vocabView'),
+        reading: document.getElementById('readingView'),
+        grammar: document.getElementById('grammarView'),
+        flashcard: document.getElementById('flashcardView')
+      };
+      const btns = {
+        vocab: document.getElementById('tabBtnVocab'),
+        reading: document.getElementById('tabBtnReading'),
+        grammar: document.getElementById('tabBtnGrammar'),
+        flashcard: document.getElementById('tabBtnFlashcard')
+      };
+
+      Object.keys(views).forEach(k => {
+        if (k === tab) {
+          views[k].classList.remove('hidden');
+          btns[k].className = 'py-2.5 border-b-2 border-emerald-600 text-emerald-600 flex items-center gap-1.5 transition font-bold';
+        } else {
+          views[k].classList.add('hidden');
+          btns[k].className = 'py-2.5 border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-1.5 transition font-semibold';
+        }
+      });
+
+      if (tab === 'flashcard') {
+        fcIndex = 0;
+        updateFlashcard();
+      }
+    }
+
+    function setupSearch() {
+      const input = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('clearSearch');
+
+      input.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        if (searchQuery) {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
+        applyFilters();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        searchQuery = '';
+        clearBtn.classList.add('hidden');
+        applyFilters();
+      });
+    }
+
+    function applyFilters() {
+      filteredVocab = VOCAB_DATA.filter(item => {
+        const matchSE = (selectedSE === 'ALL' || item.se_id === selectedSE);
+        if (!matchSE) return false;
+        if (!searchQuery) return true;
+        return (
+          item.vocab.toLowerCase().includes(searchQuery) ||
+          item.yomi.toLowerCase().includes(searchQuery) ||
+          item.meaning.toLowerCase().includes(searchQuery) ||
+          item.hanviet.toLowerCase().includes(searchQuery)
+        );
+      });
+
+      filteredReadings = READINGS_DATA.filter(item => {
+        const matchSE = (selectedSE === 'ALL' || item.id === selectedSE);
+        if (!matchSE) return false;
+        if (!searchQuery) return true;
+        return (
+          item.title.toLowerCase().includes(searchQuery) ||
+          item.text.toLowerCase().includes(searchQuery)
+        );
+      });
+
+      filteredGrammar = GRAMMAR_DATA.filter(item => {
+        if (!searchQuery) return true;
+        return (
+          item.title.toLowerCase().includes(searchQuery) ||
+          item.pattern.toLowerCase().includes(searchQuery)
+        );
+      });
+
+      document.getElementById('vocabCountBadge').innerText = filteredVocab.length;
+      document.getElementById('grammarCountBadge').innerText = filteredGrammar.length;
+
+      renderVocab();
+      renderReadings();
+      renderGrammar();
+      fcIndex = 0;
+      updateFlashcard();
+    }
+
+    function renderVocab() {
+      const container = document.getElementById('vocabListContainer');
+      const empty = document.getElementById('vocabEmpty');
+
+      if (filteredVocab.length === 0) {
+        container.innerHTML = '';
+        empty.classList.remove('hidden');
+        return;
+      }
+
+      empty.classList.add('hidden');
+      container.innerHTML = filteredVocab.map((item) => `
+        <div onclick="speakJapanese('${item.vocab}')" class="cursor-pointer active:bg-emerald-50/70 bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-xs flex items-center justify-between hover:border-emerald-400 hover:shadow-sm transition group">
+          <div class="flex-1 pr-3">
+            <div class="flex items-center gap-1.5 mb-1">
+              <span class="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 text-[10px] font-bold">
+                ${item.se_id}
+              </span>
+              <span class="px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[10px] font-bold uppercase">
+                ${item.hanviet || 'Hán Việt'}
+              </span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <h3 class="text-base font-bold text-slate-900 jp-font leading-snug">${item.vocab}</h3>
+              <span class="text-xs text-emerald-700 jp-font font-medium">${item.yomi}</span>
+            </div>
+            <p class="text-xs text-slate-700 font-semibold mt-0.5">${item.meaning}</p>
+          </div>
+
+          <div class="w-8 h-8 rounded-full bg-slate-50 group-hover:bg-emerald-600 group-hover:text-white text-slate-400 flex items-center justify-center transition active:scale-90 shrink-0 shadow-2xs">
+            <i class="fa-solid fa-volume-high text-xs"></i>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderReadings() {
+      const container = document.getElementById('readingContainer');
+      container.innerHTML = filteredReadings.map((item) => `
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs hover:border-blue-300 transition">
+          <div class="flex items-center justify-between mb-2 pb-2 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 font-bold text-xs">
+                ${item.id}
+              </span>
+              <h3 class="text-sm font-bold text-slate-900">${item.title}</h3>
+            </div>
+            <button onclick="speakJapanese(\`${item.text.replace(/\n/g, ' ').substring(0, 200)}\`)" class="px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold flex items-center gap-1 transition">
+              <i class="fa-solid fa-volume-high text-xs"></i>
+              <span>Nghe đọc</span>
+            </button>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed jp-font bg-slate-50 p-3 rounded-xl whitespace-pre-line">
+            ${item.text}
+          </p>
+        </div>
+      `).join('');
+    }
+
+    function renderGrammar() {
+      const container = document.getElementById('grammarContainer');
+      container.innerHTML = filteredGrammar.map((item) => `
+        <div class="bg-white rounded-2xl p-3 border border-slate-200/90 shadow-xs flex items-center justify-between hover:border-amber-300 transition">
+          <div>
+            <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 text-[10px] font-bold">
+              ${item.unit}
+            </span>
+            <p class="text-xs font-bold text-slate-800 jp-font mt-1">${item.pattern}</p>
+          </div>
+          <button onclick="speakJapanese('${item.pattern.replace(/〜/g, '')}')" class="w-7 h-7 rounded-full bg-slate-50 hover:bg-amber-100 text-slate-500 hover:text-amber-700 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    // FLASHCARD
+    function flipCard() {
+      document.getElementById('fcInner').classList.toggle('flipped');
+    }
+
+    function updateFlashcard() {
+      const inner = document.getElementById('fcInner');
+      inner.classList.remove('flipped');
+
+      if (filteredVocab.length === 0) {
+        document.getElementById('fcFrontVocab').innerText = 'Không có thẻ';
+        document.getElementById('fcFrontYomi').innerText = '';
+        document.getElementById('fcBackVie').innerText = 'Hãy chọn bài khác';
+        document.getElementById('fcBackHanViet').innerText = '';
+        document.getElementById('fcBackReading').innerText = '';
+        document.getElementById('fcProgress').innerText = '0 / 0';
+        return;
+      }
+
+      const item = filteredVocab[fcIndex];
+      document.getElementById('fcFrontVocab').innerText = item.vocab;
+      document.getElementById('fcFrontYomi').innerText = item.yomi;
+      document.getElementById('fcBackVie').innerText = item.meaning;
+      document.getElementById('fcBackHanViet').innerText = item.hanviet || 'Hán Việt';
+      document.getElementById('fcBackReading').innerText = item.yomi;
+      document.getElementById('fcLessonTag').innerText = item.se_id;
+      document.getElementById('fcProgress').innerText = `Thẻ ${fcIndex + 1} / ${filteredVocab.length}`;
+    }
+
+    function nextCard() {
+      if (filteredVocab.length === 0) return;
+      fcIndex = (fcIndex + 1) % filteredVocab.length;
+      updateFlashcard();
+    }
+
+    function prevCard() {
+      if (filteredVocab.length === 0) return;
+      fcIndex = (fcIndex - 1 + filteredVocab.length) % filteredVocab.length;
+      updateFlashcard();
+    }
+
+    function shuffleCards() {
+      for (let i = filteredVocab.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [filteredVocab[i], filteredVocab[j]] = [filteredVocab[j], filteredVocab[i]];
+      }
+      fcIndex = 0;
+      updateFlashcard();
+    }
+
+    // DUAL AUDIO ENGINE: Google TTS MP3 Stream + SpeechSynthesis Fallback
+    const audioPlayer = new Audio();
+    audioPlayer.preload = 'auto';
+    let audioUnlocked = false;
+
+    function unlockAudio() {
+      if (audioUnlocked) return;
+      audioPlayer.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+      audioPlayer.play().catch(() => {});
+      if (window.speechSynthesis) {
+        window.speechSynthesis.resume();
+      }
+      audioUnlocked = true;
+    }
+    document.addEventListener('touchstart', unlockAudio, { once: true, passive: true });
+    document.addEventListener('click', unlockAudio, { once: true });
+
+    function showAudioToast(text) {
+      let toast = document.getElementById('audioToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'audioToast';
+        toast.className = 'fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 text-white px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2 shadow-2xl border border-emerald-500/50 backdrop-blur-md transition-all duration-300 pointer-events-none opacity-0';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span><span>Đang phát: <strong class="text-amber-300 jp-font">${text.substring(0, 25)}</strong></span>`;
+      toast.style.opacity = '1';
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => {
+        toast.style.opacity = '0';
+      }, 2500);
+    }
+
+    function speakJapanese(text, onEndCallback = null) {
+      if (!text) return;
+      unlockAudio();
+      showAudioToast(text);
+
+      const cleanQuery = text.replace(/[\n\r]/g, ' ').substring(0, 150).trim();
+      const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q=${encodeURIComponent(cleanQuery)}`;
+      
+      audioPlayer.pause();
+      audioPlayer.currentTime = 0;
+      audioPlayer.src = ttsUrl;
+
+      const handleEnd = () => {
+        audioPlayer.onended = null;
+        audioPlayer.onerror = null;
+        if (onEndCallback) onEndCallback();
+      };
+
+      audioPlayer.onended = handleEnd;
+
+      audioPlayer.onerror = (e) => {
+        console.warn("Audio MP3 failed, using SpeechSynthesis fallback", e);
+        audioPlayer.onended = null;
+        audioPlayer.onerror = null;
+        fallbackSpeechSynthesis(text, onEndCallback);
+      };
+
+      const playPromise = audioPlayer.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(err => {
+          console.warn("Audio play blocked, using SpeechSynthesis fallback:", err);
+          fallbackSpeechSynthesis(text, onEndCallback);
+        });
+      }
+    }
+
+    function fallbackSpeechSynthesis(text, onEndCallback = null) {
+      if (!window.speechSynthesis) {
+        if (onEndCallback) onEndCallback();
+        return;
+      }
+      try {
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.resume();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'ja-JP';
+        utterance.rate = 0.95;
+        
+        const voices = window.speechSynthesis.getVoices();
+        const jpVoice = voices.find(v => v.lang === 'ja-JP' || v.lang === 'ja_JP' || v.lang.startsWith('ja'));
+        if (jpVoice) utterance.voice = jpVoice;
+
+        if (onEndCallback) {
+          utterance.onend = onEndCallback;
+          utterance.onerror = onEndCallback;
+        }
+        window.speechSynthesis.speak(utterance);
+      } catch (err) {
+        console.error("SpeechSynthesis error:", err);
+        if (onEndCallback) onEndCallback();
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
